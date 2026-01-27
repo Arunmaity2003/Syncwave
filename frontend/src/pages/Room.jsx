@@ -3,6 +3,7 @@ import { Headphones } from "lucide-react"
 import Player from '../components/Player'
 import Chat from '../components/Chat'
 import { Crown } from 'lucide-react'
+
 function Room() {
   const room_id ="1234";
   return (
@@ -18,6 +19,9 @@ function Room() {
         <div className="left w-1/2">
           player
         </div>
+
+
+
         {/* right section */}
         <div className="right w-1/2 m-5 flex flex-col items-center gap-5">
           <div className='bg-[#4052674b] w-2xl flex-col items-center justify-center p-3 rounded-xl'>
