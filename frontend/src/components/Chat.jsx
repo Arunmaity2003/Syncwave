@@ -10,7 +10,7 @@ function Chat() {
 
   const [message, setMessage] = useState("");
   return (
-    <div className="chat-sec">
+    <div className="chat-sec bg-gray-900 p-10">
           <h3>Group Chat</h3>
           <div className="underline" />
 

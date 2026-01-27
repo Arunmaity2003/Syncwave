@@ -18,13 +18,16 @@ function Room() {
         <div className="left w-1/2">
           player
         </div>
-        <div className="right w-1/2 m-5 ">
+        {/* right section */}
+        <div className="right w-1/2 m-5 flex flex-col items-center gap-5">
           <div className='bg-[#4052674b] w-2xl flex-col items-center justify-center p-3 rounded-xl'>
             <p className='m-1.5 bg-amber-50 text-black p-1 text-center font-bold font-serif rounded-sm flex items-center gap-5 justify-center text-xl'>Room id:{room_id}</p>
             <div className='border border-white-600 w-70 m-1.5 bg-amber-50 text-black p-1 text-center font-bold font-serif rounded-sm flex items-center gap-5 justify-center text-xl'><Crown className='text-center '/>You are the host</div>
             <div className='border border-white-600 w-70 m-1.5 bg-amber-50 text-black p-1 text-center font-bold font-serif rounded-sm flex items-center gap-5 justify-center text-xl'>4 user connected</div>
             <Player />
           </div>
+
+          {/* //chat section */}
           <div className="">
             <Chat />
           </div>
