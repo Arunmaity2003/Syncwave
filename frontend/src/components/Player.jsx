@@ -1,16 +1,12 @@
 import React from 'react'
-
+import './player.css'
 function Player() {
   return (
-    <div>
-      <div>
-        <div>admin</div>
-        <div>4 persons are here</div>
-        <div className="button">
-          <button></button>
-        </div>
-      </div>
-      <div></div>
+    <div className='controls'>
+      <button className="btn play">▶ Play</button>
+      <button className="btn pause">⏸ Pause</button>
+      <button className="btn sync">🔗 Sync</button>
+
     </div>
   )
 }
