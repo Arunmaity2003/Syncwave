@@ -28,7 +28,7 @@ function Room() {
           </div>
 
           {/* //chat section */}
-          <div className="">
+          <div className="bg-[#4052674b] w-2xl rounded-2xl">
             <Chat />
           </div>
         </div>

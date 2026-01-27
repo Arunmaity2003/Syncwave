@@ -20,9 +20,18 @@
 
 
 /* chat */
-
+.underline{
+    border: 1px solid white ;
+    margin-bottom: 14px;
+}
+.chat-sec h3{
+    text-align: center;
+    font-size: 30px;
+    
+    font-weight: bold;
+}
 .chat-sec {
-  height: 280px;
+  height: 350px;
   display: flex;
   flex-direction: column;
 }
@@ -49,7 +58,7 @@
   flex: 1;
   padding: 10px;
   border-radius: 10px;
-  border: none;
+  border: 2px solid white;
 }
 
 .chat-input button {
