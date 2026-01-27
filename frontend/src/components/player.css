@@ -20,7 +20,7 @@
 
 
 /* chat */
-.underline{
+.underline1{
     border: 1px solid white ;
     margin-bottom: 14px;
 }
@@ -31,7 +31,7 @@
     font-weight: bold;
 }
 .chat-sec {
-  height: 350px;
+  height: 450px;
   display: flex;
   flex-direction: column;
 }

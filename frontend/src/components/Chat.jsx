@@ -12,7 +12,7 @@ function Chat() {
   return (
     <div className="chat-sec  p-4">
           <h3>Group Chat</h3>
-          <div className="underline" />
+          <div className="underline1" />
 
           <div className="messages">
             {chat.map((m, i) => (
