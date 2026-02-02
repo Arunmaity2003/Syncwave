@@ -19,7 +19,7 @@ function Room() {
         {/* left section */}
         <div className="left w-2/3 flex">
           <div className='m-10 bg-gray-900 p-4 flex border-amber-400 w-full h-100 items-center justify-center rounded-xl'>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/SvFXHwclqdo?si=G5X5Jr7g-pvsF4BA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
           </div>
         </div>
 

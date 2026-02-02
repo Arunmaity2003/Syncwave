@@ -1,6 +1,6 @@
 import YouTube from "react-youtube";
 import { useEffect, useRef } from "react";
-import { socket } from "../socket/socket";
+import { socket } from "../socket/Socket";
 
 export default function MiniYTPlayer({ isHost, videoId }) {
   const playerRef = useRef(null);
@@ -9,37 +9,37 @@ export default function MiniYTPlayer({ isHost, videoId }) {
     playerRef.current = event.target;
   };
 
-  // HOST → send actions
+  // HOST actions
   const hostPlay = () => {
     const time = playerRef.current.getCurrentTime();
-    socket.emit("HOST_PLAY", { time });
+    socket.emit("play-video", { time });
   };
 
   const hostPause = () => {
     const time = playerRef.current.getCurrentTime();
-    socket.emit("HOST_PAUSE", { time });
+    socket.emit("pause-video", { time });
   };
 
-  // LISTENERS → receive sync
+  // Listeners
   useEffect(() => {
-    socket.on("PLAY", ({ time }) => {
+    socket.on("play-video", ({ time }) => {
       playerRef.current.seekTo(time, true);
       playerRef.current.playVideo();
     });
 
-    socket.on("PAUSE", ({ time }) => {
+    socket.on("pause-video", ({ time }) => {
       playerRef.current.seekTo(time, true);
       playerRef.current.pauseVideo();
     });
 
-    socket.on("SYNC_TIME", ({ time }) => {
+    socket.on("sync-video", ({ time }) => {
       playerRef.current.seekTo(time, true);
     });
 
     return () => {
-      socket.off("PLAY");
-      socket.off("PAUSE");
-      socket.off("SYNC_TIME");
+      socket.off("play-video");
+      socket.off("pause-video");
+      socket.off("sync-video");
     };
   }, []);
 
@@ -54,8 +54,8 @@ export default function MiniYTPlayer({ isHost, videoId }) {
           playerVars: {
             controls: 0,
             modestbranding: 1,
-            rel: 0
-          }
+            rel: 0,
+          },
         }}
       />
 
