@@ -1,26 +1,53 @@
 import YouTube from "react-youtube";
-import { useEffect, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle
+} from "react";
 import { socket } from "../socket/Socket";
 
-export default function MiniYTPlayer({ isHost, videoId }) {
+//sync logic 
+const handSync = () => {
+  if(!playerRef.current) return;
+  const time = playerRef.current.getCurrentTime();
+  socket.emit("sync-video", { time });
+}
+
+const MiniYTPlayer = forwardRef(({ isHost, videoId }, ref) => {
   const playerRef = useRef(null);
 
   const onReady = (event) => {
     playerRef.current = event.target;
   };
 
-  // HOST actions
-  const hostPlay = () => {
+  const play = () => {
+    if (!playerRef.current) return;
     const time = playerRef.current.getCurrentTime();
+    playerRef.current.playVideo();
     socket.emit("play-video", { time });
   };
 
-  const hostPause = () => {
+  const pause = () => {
+    if (!playerRef.current) return;
     const time = playerRef.current.getCurrentTime();
+    playerRef.current.pauseVideo();
     socket.emit("pause-video", { time });
   };
 
-  // Listeners
+  const sync = () => {
+    if (!playerRef.current) return;
+    const time = playerRef.current.getCurrentTime();
+    socket.emit("sync-video", { time });
+  };
+
+  useImperativeHandle(ref, () => ({
+    play,
+    pause,
+    sync,
+  }));
+
+  // socket listeners
   useEffect(() => {
     socket.on("play-video", ({ time }) => {
       playerRef.current.seekTo(time, true);
@@ -50,7 +77,7 @@ export default function MiniYTPlayer({ isHost, videoId }) {
         onReady={onReady}
         opts={{
           width: "100%",
-          height: "180",
+          height: "450px",
           playerVars: {
             controls: 0,
             modestbranding: 1,
@@ -58,13 +85,8 @@ export default function MiniYTPlayer({ isHost, videoId }) {
           },
         }}
       />
-
-      {isHost && (
-        <div className="yt-host-controls">
-          <button className="play" onClick={hostPlay}>▶ Play</button>
-          <button className="pause" onClick={hostPause}>⏸ Pause</button>
-        </div>
-      )}
     </div>
   );
-}
+});
+
+export default MiniYTPlayer;

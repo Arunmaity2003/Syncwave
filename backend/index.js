@@ -14,14 +14,24 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log("🟢 User connected:", socket.id);
 
+  //room join
+  socket.on("join-room", ({ roomId }) => {
+    socket.join(roomId);
+    console.log(`👥 ${socket.id} joined room ${roomId}`);
+
+    socket.to(roomId).emit("user-joined", {
+      userId: socket.id,
+    });
+  });
+
   // ▶ PLAY
-  socket.on("play-video", () => {
-    socket.broadcast.emit("play-video");
+  socket.on("play-video", ({ time }) => {
+    socket.broadcast.emit("play-video", { time });
   });
 
   // ⏸ PAUSE
-  socket.on("pause-video", () => {
-    socket.broadcast.emit("pause-video");
+  socket.on("pause-video", ({ time }) => {
+    socket.broadcast.emit("pause-video", { time });
   });
 
   // 🔗 SYNC (seek)
